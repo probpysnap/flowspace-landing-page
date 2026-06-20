@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowSpace Chiang Mai | Premium Co-Working & Productivity</title>
+    <meta name="description" content="Elevate your flow in Chiang Mai's urban center. A premium workspace engineered for international tech workers and modern entrepreneurs.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Load an icon library for the grid -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">
+                <span class="logo-text">FlowSpace.</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#ecosystem" data-i18n="nav_eco">The Ecosystem</a></li>
+                <li><a href="#amenities" data-i18n="nav_amenities">Amenities</a></li>
+                <li><a href="#community" data-i18n="nav_community">Community</a></li>
+                <li><a href="#pricing" data-i18n="nav_membership">Membership</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="lang-switcher-flags">
+                    <button class="flag-btn active" data-lang="en" title="English">
+                        <img src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/gb.svg" alt="English">
+                    </button>
+                    <button class="flag-btn" data-lang="zh" title="中文">
+                        <img src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/cn.svg" alt="Chinese">
+                    </button>
+                    <button class="flag-btn" data-lang="th" title="ภาษาไทย">
+                        <img src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/th.svg" alt="Thai">
+                    </button>
+                </div>
+                <a href="#pricing" class="btn btn-primary" data-i18n="nav_book">Book a Free Trial</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero" id="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1><span data-i18n="hero_title_1">Elevate Your Flow in </span><br><span class="highlight" data-i18n="hero_title_highlight">Chiang Mai's Urban Center</span></h1>
+                <p class="sub-headline" data-i18n="hero_sub">A premium workspace engineered for international tech workers and modern entrepreneurs. Experience ultimate productivity where deep focus meets seamless design.</p>
+                <div class="hero-actions">
+                    <a href="#pricing" class="btn btn-primary btn-large" data-i18n="hero_btn_book">Book a Free Trial Day</a>
+                    <a href="#ecosystem" class="btn btn-secondary btn-large" data-i18n="hero_btn_explore">Explore Our Spaces</a>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <div class="glass-card floating-card">
+                    <div class="card-icon"><ion-icon name="wifi"></ion-icon></div>
+                    <div class="card-info">
+                        <strong data-i18n="hero_card_title">1 Gbps Fiber</strong>
+                        <span data-i18n="hero_card_sub">Ultra-low latency</span>
+                    </div>
+                </div>
+                <img src="assets/images/hero.png" alt="Bright minimal workspace with natural light" class="hero-img">
+            </div>
+        </div>
+    </header>
+
+    <section class="ecosystem" id="ecosystem">
+        <div class="container ecosystem-grid">
+            <div class="ecosystem-image">
+                <img src="assets/images/ecosystem.png" alt="Quiet zone for deep work with ergonomic furniture">
+                <div class="decorative-blob"></div>
+            </div>
+            <div class="ecosystem-text">
+                <h2 class="section-title" data-i18n="eco_title">Designed for Deep Work.<br>Built for Growth.</h2>
+                <p class="section-desc" data-i18n="eco_desc">We’ve meticulously crafted every square meter using behavioral design principles to reduce cognitive load and enhance your productivity.</p>
+                
+                <div class="features-list">
+                    <div class="feature-item">
+                        <div class="feature-icon"><ion-icon name="body-outline"></ion-icon></div>
+                        <div class="feature-content">
+                            <h3 data-i18n="eco_feat1_title">Ergonomic Excellence</h3>
+                            <p data-i18n="eco_feat1_desc">Herman Miller chairs and height-adjustable standing desks in every dedicated zone.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><ion-icon name="headset-outline"></ion-icon></div>
+                        <div class="feature-content">
+                            <h3 data-i18n="eco_feat2_title">Acoustic Quiet Zones</h3>
+                            <p data-i18n="eco_feat2_desc">Engineered soundscapes and acoustic paneling ensure zero distractions during deep work blocks.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><ion-icon name="git-network-outline"></ion-icon></div>
+                        <div class="feature-content">
+                            <h3 data-i18n="eco_feat3_title">Dynamic Synergy Areas</h3>
+                            <p data-i18n="eco_feat3_desc">Seamlessly transition from isolated coding to high-impact networking in our urban lounge.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="amenities" id="amenities">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title" data-i18n="amen_title">Core Amenities</h2>
+                <p class="section-desc" data-i18n="amen_desc">Everything you need to scale your startup or dominate your remote work, all under one roof.</p>
+            </div>
+            
+            <div class="amenities-grid">
+                <div class="amenity-card">
+                    <ion-icon name="wifi-outline" class="amenity-icon"></ion-icon>
+                    <h3 data-i18n="amen_1_title">Redundant Gigabit Wi-Fi</h3>
+                    <p data-i18n="amen_1_desc">Dual-line enterprise fiber internet with automatic failover so you never drop a call.</p>
+                </div>
+                <div class="amenity-card">
+                    <ion-icon name="key-outline" class="amenity-icon"></ion-icon>
+                    <h3 data-i18n="amen_2_title">24/7 Secure Access</h3>
+                    <p data-i18n="amen_2_desc">Work on your own timezone with biometric security and round-the-clock facility access.</p>
+                </div>
+                <div class="amenity-card">
+                    <ion-icon name="cafe-outline" class="amenity-icon"></ion-icon>
+                    <h3 data-i18n="amen_3_title">Specialty Coffee Bar</h3>
+                    <p data-i18n="amen_3_desc">Unlimited single-origin espresso and local teas crafted by our in-house barista.</p>
+                </div>
+                <div class="amenity-card">
+                    <ion-icon name="mic-off-outline" class="amenity-icon"></ion-icon>
+                    <h3 data-i18n="amen_4_title">Soundproof Call Booths</h3>
+                    <p data-i18n="amen_4_desc">Studio-grade acoustic pods equipped with ring lights and pristine audio environments.</p>
+                </div>
+                <div class="amenity-card">
+                    <ion-icon name="people-outline" class="amenity-icon"></ion-icon>
+                    <h3 data-i18n="amen_5_title">Premium Meeting Rooms</h3>
+                    <p data-i18n="amen_5_desc">Boardrooms outfitted with 4K displays, wireless casting, and smart whiteboards.</p>
+                </div>
+                <div class="amenity-card">
+                    <ion-icon name="leaf-outline" class="amenity-icon"></ion-icon>
+                    <h3 data-i18n="amen_6_title">Biophilic Design</h3>
+                    <p data-i18n="amen_6_desc">Purified air systems and lush indoor greenery to boost mood and sustained focus.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="community" id="community">
+        <div class="container community-content">
+            <div class="community-text">
+                <h2 class="section-title" data-i18n="com_title">Connect with the Global Digital Economy</h2>
+                <p class="section-desc" data-i18n="com_desc">FlowSpace isn't just a desk; it's an accelerator for your network. Rub shoulders with funded founders, senior engineers, and elite digital nomads.</p>
+                <ul class="community-perks">
+                    <li><ion-icon name="checkmark-circle"></ion-icon> <span data-i18n="com_perk1">Weekly tech meetups & founder roundtables</span></li>
+                    <li><ion-icon name="checkmark-circle"></ion-icon> <span data-i18n="com_perk2">Exclusive access to our private Slack community</span></li>
+                    <li><ion-icon name="checkmark-circle"></ion-icon> <span data-i18n="com_perk3">Skill-share workshops and investor pitch nights</span></li>
+                </ul>
+                <a href="#pricing" class="btn btn-outline" data-i18n="com_btn">Join the Network</a>
+            </div>
+            <div class="community-image">
+                <img src="assets/images/community.png" alt="Dynamic networking area in co-working space">
+                <div class="experience-badge">
+                    <span class="number" data-i18n="com_badge_num">500+</span>
+                    <span class="label" data-i18n="com_badge_lbl">Active Members</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title" data-i18n="price_title">Membership Plans</h2>
+                <p class="section-desc" data-i18n="price_desc">Flexible access designed for the modern professional. No hidden fees, cancel anytime.</p>
+            </div>
+            
+            <div class="pricing-table">
+                <!-- Day Pass -->
+                <div class="pricing-card">
+                    <div class="card-header">
+                        <h3 data-i18n="price_day_title">Day Pass</h3>
+                        <p data-i18n="price_day_desc">Perfect for travelers</p>
+                    </div>
+                    <div class="price">
+                        <span class="currency">฿</span><span class="amount" data-i18n="price_day_amt">400</span><span class="period" data-i18n="price_day_period">/day</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><ion-icon name="checkmark"></ion-icon> <span data-i18n="price_day_feat1">Access from 8 AM - 8 PM</span></li>
+                        <li><ion-icon name="checkmark"></ion-icon> <span data-i18n="price_day_feat2">Hot desk seating</span></li>
+                        <li><ion-icon name="checkmark"></ion-icon> <span data-i18n="price_day_feat3">High-speed Wi-Fi</span></li>
+                        <li><ion-icon name="checkmark"></ion-icon> <span data-i18n="price_day_feat4">1 hr Call Booth access</span></li>
+                        <li class="disabled"><ion-icon name="close"></ion-icon> <span data-i18n="price_day_feat5">Meeting Room credits</span></li>
+                        <li class="disabled"><ion-icon name="close"></ion-icon> <span data-i18n="price_day_feat6">24/7 Access</span></li>
+                    </ul>
+                    <a href="#" class="btn btn-outline btn-block" data-i18n="price_day_btn">Get a Day Pass</a>
+                </div>
+
+                <!-- Dedicated Desk (Popular) -->
+                <div class="pricing-card popular">
+                    <div class="popular-badge" data-i18n="price_ded_badge">Most Popular</div>
+                    <div class="card-header">
+                        <h3 data-i18n="price_ded_title">Dedicated Desk</h3>
+                        <p data-i18n="price_ded_desc">For serious professionals</p>
+                    </div>
+                    <div class="price">
+                        <span class="currency">฿</span><span class="amount" data-i18n="price_ded_amt">6,500</span><span class="period" data-i18n="price_ded_period">/mo</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><ion-icon name="checkmark"></ion-icon> <span data-i18n="price_ded_feat1">24/7 Secure Access</span></li>
+                        <li><ion-icon name="checkmark"></ion-icon> <span data-i18n="price_ded_feat2">Personal ergonomic desk</span></li>
+                        <li><ion-icon name="checkmark"></ion-icon> <span data-i18n="price_ded_feat3">Unlimited specialty coffee</span></li>
+                        <li><ion-icon name="checkmark"></ion-icon> <span data-i18n="price_ded_feat4">Unlimited Call Booth usage</span></li>
+                        <li><ion-icon name="checkmark"></ion-icon> <span data-i18n="price_ded_feat5">5 hrs Meeting Room credits</span></li>
+                        <li><ion-icon name="checkmark"></ion-icon> <span data-i18n="price_ded_feat6">Mail & package handling</span></li>
+                    </ul>
+                    <a href="#" class="btn btn-primary btn-block" data-i18n="price_ded_btn">Claim Your Desk</a>
+                </div>
+
+                <!-- Private Office -->
+                <div class="pricing-card">
+                    <div class="card-header">
+                        <h3 data-i18n="price_priv_title">Private Office</h3>
+                        <p data-i18n="price_priv_desc">For growing teams (2-6)</p>
+                    </div>
+                    <div class="price">
+                        <span class="currency">฿</span><span class="amount" data-i18n="price_priv_amt">25,000</span><span class="period" data-i18n="price_priv_period">/mo</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><ion-icon name="checkmark"></ion-icon> <span data-i18n="price_priv_feat1">Everything in Dedicated</span></li>
+                        <li><ion-icon name="checkmark"></ion-icon> <span data-i18n="price_priv_feat2">Fully furnished private suite</span></li>
+                        <li><ion-icon name="checkmark"></ion-icon> <span data-i18n="price_priv_feat3">Custom branding options</span></li>
+                        <li><ion-icon name="checkmark"></ion-icon> <span data-i18n="price_priv_feat4">15 hrs Meeting Room credits</span></li>
+                        <li><ion-icon name="checkmark"></ion-icon> <span data-i18n="price_priv_feat5">Priority IT support</span></li>
+                        <li><ion-icon name="checkmark"></ion-icon> <span data-i18n="price_priv_feat6">Guest reception services</span></li>
+                    </ul>
+                    <a href="#" class="btn btn-outline btn-block" data-i18n="price_priv_btn">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <span class="logo-text">FlowSpace.</span>
+                <p data-i18n="foot_desc">The premier co-working ecosystem in Chiang Mai. Designed for deep work, built for global growth.</p>
+                <div class="social-links">
+                    <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
+                    <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+                    <a href="#"><ion-icon name="logo-linkedin"></ion-icon></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4 data-i18n="foot_spaces">Spaces</h4>
+                <ul>
+                    <li><a href="#" data-i18n="foot_hot">Hot Desks</a></li>
+                    <li><a href="#" data-i18n="foot_ded">Dedicated Desks</a></li>
+                    <li><a href="#" data-i18n="foot_priv">Private Offices</a></li>
+                    <li><a href="#" data-i18n="foot_meet">Meeting Rooms</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4 data-i18n="foot_company">Company</h4>
+                <ul>
+                    <li><a href="#" data-i18n="foot_about">About Us</a></li>
+                    <li><a href="#community" data-i18n="nav_community">Community</a></li>
+                    <li><a href="#" data-i18n="foot_events">Events</a></li>
+                    <li><a href="#" data-i18n="foot_careers">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4 data-i18n="foot_visit">Visit Us</h4>
+                <p><ion-icon name="location-outline"></ion-icon> 123 Nimmanahaeminda Road, <br>Suthep, Chiang Mai 50200</p>
+                <p><ion-icon name="mail-outline"></ion-icon> hello@flowspace-cnx.com</p>
+                <p><ion-icon name="call-outline"></ion-icon> +66 53 123 456</p>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p data-i18n="foot_rights">&copy; 2026 FlowSpace Chiang Mai. All rights reserved.</p>
+            <div class="legal-links">
+                <a href="#" data-i18n="foot_privacy">Privacy Policy</a>
+                <a href="#" data-i18n="foot_terms">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="i18n.js"></script>
+    <script>
+        // Simple scroll effect for navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
