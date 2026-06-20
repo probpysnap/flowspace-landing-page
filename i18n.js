@@ -91,7 +91,46 @@ const translations = {
         foot_visit: "Visit Us",
         foot_rights: "© 2026 FlowSpace Chiang Mai. All rights reserved.",
         foot_privacy: "Privacy Policy",
-        foot_terms: "Terms of Service"
+        foot_terms: "Terms of Service",
+        
+        speed_title: "Enterprise-Grade Infrastructure",
+        speed_desc: "We take your connectivity seriously. Redundant systems ensure you stay online.",
+        speed_metric1: "1,000 Mbps",
+        speed_metric1_desc: "Symmetrical Fiber",
+        speed_metric2: "99.99%",
+        speed_metric2_desc: "Uptime Guarantee",
+        
+        gallery_title: "Spaces Designed for Flow",
+        gallery_desc: "Take a visual tour of our meticulously crafted environment.",
+        
+        testi_title: "Trusted by the Best",
+        testi_desc: "Hear from the founders and engineers who call FlowSpace home.",
+        testi_1_quote: "\"The most stable internet I've found in Chiang Mai. I can finally join team standups without dropping out, even during monsoon season.\"",
+        testi_1_name: "Sarah Jenkins",
+        testi_1_role: "Senior Full-Stack Engineer",
+        testi_2_quote: "\"The mix of quiet zones for deep work and the urban lounge for networking helped me find my co-founder. Incredible vibe.\"",
+        testi_2_name: "David Chen",
+        testi_2_role: "SaaS Founder",
+        
+        loc_title: "Heart of Nimman",
+        loc_desc: "Located in Chiang Mai's most vibrant digital nomad hub. Everything you need is within a 5-minute walk.",
+        loc_addr_title: "Address",
+        loc_addr_detail: "123 Nimmanahaeminda Road, Suthep, Chiang Mai",
+        loc_transit_title: "Getting Here",
+        loc_transit_detail: "10 mins from CNX Airport, 5 mins walk from Maya Mall",
+        loc_parking_title: "Parking",
+        loc_parking_detail: "Free underground parking for members (Cars & Scooters)",
+        
+        faq_title: "Frequently Asked Questions",
+        faq_desc: "Everything you need to know before joining.",
+        faq_1_q: "Can I take video calls at a Hot Desk?",
+        faq_1_a: "We have dedicated soundproof Call Booths for meetings. Short, quiet calls are okay at your desk, but we encourage using booths for long conversations to maintain a focused environment.",
+        faq_2_q: "Is the internet really stable during storms?",
+        faq_2_a: "Yes. We use a dual-line system (True & AIS fiber) with automatic failover, backed by an industrial UPS power supply.",
+        faq_3_q: "Do you offer external monitor rentals?",
+        faq_3_a: "Absolutely. 27-inch 4K monitors are available for rent on a daily or monthly basis for Hot Desk users. Dedicated Desks come with one included.",
+        faq_4_q: "Can I bring guests?",
+        faq_4_a: "Members with Dedicated Desks or Private Offices get 5 hours of guest pass credits per month. Day pass users cannot bring free guests."
     },
     th: {
         nav_eco: "ระบบนิเวศการทำงาน",
@@ -185,7 +224,46 @@ const translations = {
         foot_visit: "เยี่ยมชมเรา",
         foot_rights: "© 2026 FlowSpace Chiang Mai. สงวนลิขสิทธิ์.",
         foot_privacy: "นโยบายความเป็นส่วนตัว",
-        foot_terms: "ข้อกำหนดการให้บริการ"
+        foot_terms: "ข้อกำหนดการให้บริการ",
+        
+        speed_title: "โครงสร้างพื้นฐานระดับองค์กร",
+        speed_desc: "เราจริงจังเรื่องการเชื่อมต่อของคุณ ระบบสำรองข้อมูลคู่ช่วยให้คุณออนไลน์ได้ไม่มีสะดุด",
+        speed_metric1: "1,000 Mbps",
+        speed_metric1_desc: "อินเทอร์เน็ตไฟเบอร์สมมาตร",
+        speed_metric2: "99.99%",
+        speed_metric2_desc: "รับประกันอัพไทม์",
+        
+        gallery_title: "พื้นที่ที่ออกแบบมาเพื่อความลื่นไหล",
+        gallery_desc: "ชมภาพบรรยากาศสภาพแวดล้อมที่เราตั้งใจออกแบบมาอย่างพิถีพิถัน",
+        
+        testi_title: "ความไว้วางใจจากมืออาชีพ",
+        testi_desc: "ฟังเสียงจากผู้ก่อตั้งและวิศวกรที่เลือกให้ FlowSpace เป็นบ้านหลังที่สอง",
+        testi_1_quote: "\"นี่คือเน็ตที่เสถียรที่สุดในเชียงใหม่ ฉันสามารถประชุมทีมได้โดยไม่หลุดเลย แม้จะเป็นช่วงฤดูฝนก็ตาม\"",
+        testi_1_name: "ซาร่า เจนกินส์",
+        testi_1_role: "วิศงกรซอฟต์แวร์อาวุโส",
+        testi_2_quote: "\"การผสมผสานระหว่างโซนเงียบและเลานจ์ที่ลงตัว ทำให้ผมได้เจอ Co-founder ที่นี่ บรรยากาศดีมากๆ\"",
+        testi_2_name: "เดวิด เฉิน",
+        testi_2_role: "ผู้ก่อตั้ง SaaS สตาร์ทอัพ",
+        
+        loc_title: "ใจกลางย่านนิมมานฯ",
+        loc_desc: "ตั้งอยู่ในศูนย์กลางดิจิทัลโนแมดที่คึกคักที่สุดของเชียงใหม่ ทุกสิ่งที่คุณต้องการอยู่ในระยะเดินเพียง 5 นาที",
+        loc_addr_title: "ที่อยู่",
+        loc_addr_detail: "123 ถ.นิมมานเหมินท์ ต.สุเทพ จ.เชียงใหม่",
+        loc_transit_title: "การเดินทาง",
+        loc_transit_detail: "10 นาทีจากสนามบินเชียงใหม่, เดิน 5 นาทีจากห้าง Maya",
+        loc_parking_title: "ที่จอดรถ",
+        loc_parking_detail: "ที่จอดรถใต้ดินฟรีสำหรับสมาชิก (ทั้งรถยนต์และมอเตอร์ไซค์)",
+        
+        faq_title: "คำถามที่พบบ่อย (FAQ)",
+        faq_desc: "ทุกสิ่งที่คุณควรรู้ก่อนตัดสินใจเข้าร่วมกับเรา",
+        faq_1_q: "สามารถคุยวิดีโอคอลที่โต๊ะ Hot Desk ได้ไหม?",
+        faq_1_a: "เรามีตู้โทรศัพท์เก็บเสียงสำหรับประชุมโดยเฉพาะ การคุยสั้นๆ ที่โต๊ะสามารถทำได้ แต่เราแนะนำให้ใช้ตู้เพื่อรักษาสภาพแวดล้อมที่เงียบสงบ",
+        faq_2_q: "อินเทอร์เน็ตเสถียรจริงไหมช่วงฝนตกหนัก?",
+        faq_2_a: "จริงครับ เราใช้ระบบสองสาย (True & AIS) ที่สลับอัตโนมัติ พร้อมระบบไฟสำรอง UPS ระดับอุตสาหกรรม",
+        faq_3_q: "มีหน้าจอให้เช่าไหม?",
+        faq_3_a: "มีครับ เรามีจอ 4K 27 นิ้ว ให้เช่ารายวันและรายเดือนสำหรับสมาชิก Hot Desk ส่วนสมาชิก Dedicated Desk จะรวมจอไว้ให้แล้ว 1 เครื่อง",
+        faq_4_q: "พาเพื่อนเข้ามาด้วยได้ไหม?",
+        faq_4_a: "สมาชิก Dedicated Desk และออฟฟิศส่วนตัว จะได้เครดิตบัตรผู้มาเยือน 5 ชั่วโมงต่อเดือน แต่สำหรับบัตรรายวันจะไม่สามารถพาผู้ติดตามเข้าฟรีได้ครับ"
     },
     zh: {
         nav_eco: "办公生态",
@@ -279,7 +357,46 @@ const translations = {
         foot_visit: "参观我们",
         foot_rights: "© 2026 FlowSpace Chiang Mai. 保留所有权利.",
         foot_privacy: "隐私政策",
-        foot_terms: "服务条款"
+        foot_terms: "服务条款",
+        
+        speed_title: "企业级基础设施",
+        speed_desc: "我们非常重视您的网络连接。双重冗余系统确保您始终在线。",
+        speed_metric1: "1,000 Mbps",
+        speed_metric1_desc: "上下行对称光纤",
+        speed_metric2: "99.99%",
+        speed_metric2_desc: "正常运行时间保证",
+        
+        gallery_title: "为心流状态设计的空间",
+        gallery_desc: "带您视觉探索我们精心打造的工作环境。",
+        
+        testi_title: "备受顶尖人才信赖",
+        testi_desc: "听听将 FlowSpace 视为第二家园的创始人和工程师们怎么说。",
+        testi_1_quote: "\"这是我在清迈用过最稳定的网络。即使在雨季，我也能顺畅地参加团队每日站会，再也没有掉线过。\"",
+        testi_1_name: "Sarah Jenkins",
+        testi_1_role: "高级全栈工程师",
+        testi_2_quote: "\"这里深度工作区和社交休息室的完美结合，让我在喝咖啡时遇到了我的联合创始人。氛围太棒了。\"",
+        testi_2_name: "David Chen",
+        testi_2_role: "SaaS 创始人",
+        
+        loc_title: "宁曼路的核心地带",
+        loc_desc: "位于清迈最具活力的数字游民中心。您需要的一切都在 5 分钟步行范围内。",
+        loc_addr_title: "地址",
+        loc_addr_detail: "清迈素贴区宁曼路 123 号",
+        loc_transit_title: "交通指南",
+        loc_transit_detail: "距清迈机场 10 分钟车程，距 Maya 购物中心步行 5 分钟",
+        loc_parking_title: "停车服务",
+        loc_parking_detail: "会员免费使用地下停车场（汽车及摩托车）",
+        
+        faq_title: "常见问题",
+        faq_desc: "加入前您需要了解的一切信息。",
+        faq_1_q: "我可以在共享办公桌打视频电话吗？",
+        faq_1_a: "我们设有专用的隔音电话亭供您开会使用。在座位上进行简短、低声的通话是可以的，但我们鼓励使用电话亭进行长篇讨论，以保持专注的环境。",
+        faq_2_q: "暴风雨期间网络真的稳定吗？",
+        faq_2_a: "是的。我们采用双线系统（True & AIS 光纤）并具有自动故障转移功能，还配备了工业级 UPS 不间断电源作为后盾。",
+        faq_3_q: "你们提供外接显示器租赁吗？",
+        faq_3_a: "当然提供。共享办公桌用户可按日或按月租赁 27 英寸 4K 显示器。专属办公桌已免费包含一台显示器。",
+        faq_4_q: "我可以带访客吗？",
+        faq_4_a: "拥有专属办公桌或私人办公室的会员，每月可获得 5 小时的访客通行证积分。日卡用户不能免费带访客。"
     }
 };
 
