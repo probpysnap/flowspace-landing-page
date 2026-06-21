@@ -185,6 +185,9 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCart();
     };
 
+    let pendingCheckoutInserts = [];
+    let pendingCheckoutTotal = 0;
+
     window.processCheckout = async function() {
         if (!currentUser) {
             alert("Please login first.");
@@ -193,58 +196,104 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (cart.length === 0) return;
 
-        const btn = document.getElementById('btn-checkout');
+        // Calculate total and prepare inserts
+        let total = 0;
+        pendingCheckoutInserts = cart.map(item => {
+            const price = item.space.price_per_unit || (item.space.space_type === 'dedicated_desk' ? 6500 : 400);
+            total += price;
+
+            let pType = 'day_pass';
+            let end = new Date();
+            
+            if (item.space.space_type === 'dedicated_desk' || item.space.space_type === 'private_office') {
+                pType = 'monthly';
+                end.setMonth(end.getMonth() + 1);
+            } else if (item.space.space_type === 'meeting_room') {
+                pType = 'hourly';
+                end.setHours(end.getHours() + 2);
+            } else {
+                end.setHours(20, 0, 0, 0);
+            }
+
+            return {
+                user_id: currentUser.id,
+                space_id: item.space.id.startsWith('mock') ? '00000000-0000-0000-0000-000000000000' : item.space.id,
+                package_type: pType,
+                start_time: new Date().toISOString(),
+                end_time: end.toISOString(),
+                status: 'pending'
+            };
+        });
+
+        pendingCheckoutTotal = total;
+
+        // Show Payment Modal
+        document.getElementById('payment-amount').textContent = `฿${total.toLocaleString()}`;
+        document.getElementById('payment-modal').classList.add('active');
+    };
+
+    window.cancelPayment = function() {
+        document.getElementById('payment-modal').classList.remove('active');
+        pendingCheckoutInserts = [];
+    };
+
+    window.submitPayment = async function() {
+        const btn = document.getElementById('btn-confirm-payment');
+        const method = document.getElementById('payment-method').value;
+        
         btn.innerHTML = 'Processing...';
         btn.disabled = true;
 
         try {
-            // Attempt to insert into bookings table
-            const inserts = cart.map(item => {
-                let pType = 'day_pass';
-                let end = new Date();
-                
-                if (item.space.space_type === 'dedicated_desk' || item.space.space_type === 'private_office') {
-                    pType = 'monthly';
-                    end.setMonth(end.getMonth() + 1);
-                } else if (item.space.space_type === 'meeting_room') {
-                    pType = 'hourly';
-                    end.setHours(end.getHours() + 2);
-                } else {
-                    end.setHours(20, 0, 0, 0); // Day pass ends at 8PM
-                }
-
-                return {
-                    user_id: currentUser.id,
-                    space_id: item.space.id.startsWith('mock') ? '00000000-0000-0000-0000-000000000000' : item.space.id, // Supabase expects UUID, mock uses strings
-                    package_type: pType,
-                    start_time: new Date().toISOString(),
-                    end_time: end.toISOString(),
-                    status: 'pending'
-                };
-            });
-
-            // Filter out mock IDs if user hasn't setup DB to prevent error crash loop, just simulate success
-            const hasMock = inserts.some(i => i.space_id === '00000000-0000-0000-0000-000000000000');
+            const hasMock = pendingCheckoutInserts.some(i => i.space_id === '00000000-0000-0000-0000-000000000000');
             
             if (!hasMock) {
-                const { data, error } = await supabase.from('bookings').insert(inserts);
-                if (error) throw error;
+                // 1. Insert Bookings (pending)
+                const { data: bookingsData, error: bookingError } = await supabase
+                    .from('bookings')
+                    .insert(pendingCheckoutInserts)
+                    .select();
+                
+                if (bookingError) throw bookingError;
+
+                // 2. Insert Payments
+                const paymentInserts = bookingsData.map(b => ({
+                    booking_id: b.id,
+                    amount: pendingCheckoutTotal / bookingsData.length, // Distribute total if multiple
+                    payment_method: method,
+                    payment_status: 'completed',
+                    transaction_ref: 'mock_' + Math.random().toString(36).substring(7)
+                }));
+
+                const { error: paymentError } = await supabase.from('payments').insert(paymentInserts);
+                if (paymentError) throw paymentError;
+
+                // 3. Update Bookings to active
+                const bookingIds = bookingsData.map(b => b.id);
+                const { error: updateError } = await supabase
+                    .from('bookings')
+                    .update({ status: 'active' })
+                    .in('id', bookingIds);
+                
+                if (updateError) throw updateError;
+                
             } else {
                 // Simulate network delay for mock checkout
-                await new Promise(r => setTimeout(r, 1000));
+                await new Promise(r => setTimeout(r, 1500));
             }
 
-            alert("Checkout successful! (Simulated). Your booking has been confirmed.");
+            alert("Payment successful! Your booking is confirmed.");
+            document.getElementById('payment-modal').classList.remove('active');
             cart = [];
             renderCart();
             
-            // Redirect to dashboard (if it exists) or index
-            window.location.href = 'index.html';
+            // Redirect to dashboard
+            window.location.href = 'dashboard.html';
 
         } catch (err) {
-            alert('Checkout failed. Error: ' + err.message);
+            alert('Payment failed. Error: ' + err.message);
         } finally {
-            btn.innerHTML = 'Proceed to Checkout';
+            btn.innerHTML = 'Confirm Payment';
             btn.disabled = false;
         }
     };

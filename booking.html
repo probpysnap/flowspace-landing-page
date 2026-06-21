@@ -113,6 +113,30 @@
         </div>
     </div>
 
+    <!-- Payment Modal -->
+    <div class="auth-modal-overlay" id="payment-modal">
+        <div class="auth-modal-container">
+            <h2 id="payment-title">Mock Payment</h2>
+            <p style="text-align: center; color: var(--slate); margin-bottom: 20px;">Complete your booking by selecting a payment method.</p>
+            
+            <div style="background: rgba(181, 131, 80, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+                <span style="font-weight: 600; color: var(--charcoal);">Total Amount: </span>
+                <span id="payment-amount" style="font-size: 1.25rem; font-weight: 700; color: var(--oak);">฿0</span>
+            </div>
+
+            <div class="form-group">
+                <label>Payment Method</label>
+                <select id="payment-method" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); font-family: inherit; font-size: 1rem;">
+                    <option value="credit_card">Credit Card (Stripe Mock)</option>
+                    <option value="promptpay">PromptPay (QR Code Mock)</option>
+                </select>
+            </div>
+            
+            <button class="btn btn-primary btn-block" id="btn-confirm-payment" onclick="submitPayment()">Confirm Payment</button>
+            <button class="btn btn-outline btn-block" style="margin-top: 10px;" onclick="cancelPayment()">Cancel</button>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-client.js"></script>

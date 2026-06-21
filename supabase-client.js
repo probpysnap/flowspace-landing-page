@@ -128,9 +128,11 @@ supabase.auth.onAuthStateChange(async (event, session) => {
         
         if (authActionBtn) {
             authActionBtn.innerHTML = `
-                <div class="user-profile">
-                    <span class="user-name">${displayName}</span>
-                    <button class="btn-text" onclick="handleLogout()" style="margin-left: 10px; font-size: 0.9rem; color: var(--slate); border: none; background: none; cursor: pointer;" data-i18n="nav_logout">Logout</button>
+                <div class="user-profile" style="display: flex; align-items: center; gap: 15px;">
+                    <a href="dashboard.html" style="text-decoration: none; color: var(--charcoal); font-weight: 600; display: flex; align-items: center; gap: 5px;" title="My Dashboard">
+                        <ion-icon name="person-circle-outline" style="font-size: 1.5rem;"></ion-icon> <span class="user-name" style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${displayName}</span>
+                    </a>
+                    <button class="btn-text" onclick="handleLogout()" style="font-size: 0.9rem; color: var(--slate); border: none; background: none; cursor: pointer;" data-i18n="nav_logout">Logout</button>
                 </div>
             `;
         }
