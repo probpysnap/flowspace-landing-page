@@ -1,7 +1,8 @@
 // booking.js
 document.addEventListener('DOMContentLoaded', () => {
-    // Check if Supabase client is available
-    if (!window.supabase) {
+    // supabase-client.js sets the global `supabase` variable already
+    // so we just check if it exists
+    if (typeof supabase === 'undefined') {
         console.error('Supabase client not loaded.');
         return;
     }
@@ -14,31 +15,32 @@ document.addEventListener('DOMContentLoaded', () => {
     supabase.auth.onAuthStateChange((event, session) => {
         isAuthChecked = true;
         if (!session) {
-            // Not logged in -> Show Auth Modal and prevent closing
+            // Not logged in -> Show Auth Modal
             showAuthModal(false);
             const modal = document.getElementById('auth-modal');
-            // Remove click outside to close for this page
-            const newModal = modal.cloneNode(true);
-            modal.parentNode.replaceChild(newModal, modal);
-            newModal.classList.add('active');
-            
-            // Add event listener for login success
-            const authForm = document.getElementById('auth-form');
-            if(authForm) authForm.addEventListener('submit', handleAuthSubmit);
+            if (modal) {
+                // Prevent closing on outside click (force login)
+                const clonedModal = modal.cloneNode(true);
+                modal.parentNode.replaceChild(clonedModal, modal);
+                clonedModal.classList.add('active');
+                // Re-bind form submit on the cloned modal
+                const authForm = clonedModal.querySelector('#auth-form');
+                if (authForm) authForm.addEventListener('submit', handleAuthSubmit);
+            }
         } else {
-            // Logged in -> Load spaces
+            // Logged in -> Hide auth modal & load spaces
             const modal = document.getElementById('auth-modal');
-            if(modal) modal.classList.remove('active');
+            if (modal) modal.classList.remove('active');
             loadSpaces();
         }
     });
 
-    // Fallback if auth check is too slow (user might not be logged in)
+    // Fallback: if auth check takes too long, load spaces anyway for browsing
     setTimeout(() => {
         if (!isAuthChecked) {
             loadSpaces();
         }
-    }, 1500);
+    }, 2000);
 
     // Filter Listeners
     const typeFilter = document.getElementById('type-filter');
@@ -46,76 +48,92 @@ document.addEventListener('DOMContentLoaded', () => {
         typeFilter.addEventListener('change', renderSpaces);
     }
 
+    // ============================================================
+    // LOAD SPACES from Supabase `spaces` table
+    // ============================================================
     async function loadSpaces() {
         const container = document.getElementById('spaces-container');
-        container.innerHTML = '<div class="loading-spinner">Loading spaces from database...</div>';
+        if (!container) return;
+        container.innerHTML = '<div class="loading-spinner">Loading spaces...</div>';
 
         try {
-            // Try fetching from real Supabase table
-            const { data, error } = await supabase.from('spaces').select('*').eq('status', 'available');
-            
-            if (error) {
-                throw error;
-            }
+            const { data, error } = await supabase
+                .from('spaces')
+                .select('*')
+                .eq('status', 'available');
+
+            if (error) throw error;
 
             if (data && data.length > 0) {
                 spacesData = data;
             } else {
-                throw new Error("No spaces found (Did you run the SQL script?)");
+                // No data yet — use mock data so the UI is still functional
+                console.warn('No spaces in database. Using mock data.');
+                spacesData = getMockSpaces();
             }
         } catch (err) {
-            console.warn("Supabase fetch failed, using mock data for UI demonstration.", err);
-            // Fallback mock data if the user hasn't created the tables yet
-            spacesData = [
-                { id: 'mock-1', name: 'Hot Desk Zone A', space_type: 'hot_desk', capacity: 1, price_per_unit: 400 },
-                { id: 'mock-2', name: 'Meeting Room 1', space_type: 'meeting_room', capacity: 6, price_per_unit: 1500 },
-                { id: 'mock-3', name: 'Dedicated Desk B', space_type: 'dedicated_desk', capacity: 1, price_per_unit: 6500 },
-                { id: 'mock-4', name: 'Private Office C', space_type: 'private_office', capacity: 4, price_per_unit: 25000 },
-                { id: 'mock-5', name: 'Hot Desk Zone B (Silent)', space_type: 'hot_desk', capacity: 1, price_per_unit: 450 }
-            ];
+            console.warn('Supabase fetch failed, using mock data:', err.message);
+            spacesData = getMockSpaces();
         }
 
         renderSpaces();
     }
 
+    function getMockSpaces() {
+        return [
+            { id: 'mock-1', name: 'Hot Desk Zone A', space_type: 'hot_desk', capacity: 1, price_per_unit: 400 },
+            { id: 'mock-2', name: 'Meeting Room 1', space_type: 'meeting_room', capacity: 6, price_per_unit: 1500 },
+            { id: 'mock-3', name: 'Dedicated Desk B', space_type: 'dedicated_desk', capacity: 1, price_per_unit: 6500 },
+            { id: 'mock-4', name: 'Private Office C', space_type: 'private_office', capacity: 4, price_per_unit: 25000 },
+            { id: 'mock-5', name: 'Hot Desk Zone B (Silent)', space_type: 'hot_desk', capacity: 1, price_per_unit: 450 }
+        ];
+    }
+
+    // ============================================================
+    // RENDER SPACES GRID
+    // ============================================================
     function renderSpaces() {
         const container = document.getElementById('spaces-container');
-        const filterVal = document.getElementById('type-filter').value;
-        
+        const filterEl = document.getElementById('type-filter');
+        if (!container || !filterEl) return;
+        const filterVal = filterEl.value;
+
         container.innerHTML = '';
 
-        const filtered = filterVal === 'all' 
-            ? spacesData 
+        const filtered = filterVal === 'all'
+            ? spacesData
             : spacesData.filter(s => s.space_type === filterVal);
 
         if (filtered.length === 0) {
-            container.innerHTML = '<p>No spaces match your filter.</p>';
+            container.innerHTML = '<p style="text-align:center;padding:40px;color:var(--slate);">No spaces match your filter.</p>';
             return;
         }
 
         filtered.forEach(space => {
             const card = document.createElement('div');
             card.className = 'space-card';
-            
-            // Format type label
-            const typeLabel = space.space_type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
-            
-            // Determine price display based on type (mock logic)
+
+            // Format type label: "hot_desk" → "Hot Desk"
+            const typeLabel = (space.space_type || '').replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+            // Price & period
+            const price = Number(space.price_per_unit) || 0;
             let period = '/day';
-            let price = space.price_per_unit || 400;
-            if (space.space_type === 'monthly' || space.space_type === 'dedicated_desk' || space.space_type === 'private_office') {
+            if (['dedicated_desk', 'private_office'].includes(space.space_type)) {
                 period = '/mo';
             } else if (space.space_type === 'meeting_room') {
                 period = '/hr';
             }
 
             card.innerHTML = `
-                <div class="space-image" style="background-image: url('https://source.unsplash.com/random/400x300/?office,workspace&sig=${space.id}')"></div>
+                <div class="space-image" style="background: linear-gradient(135deg, rgba(181,131,80,0.15), rgba(38,50,56,0.08)); display:flex; align-items:center; justify-content:center; min-height:180px;">
+                    <ion-icon name="business-outline" style="font-size:3rem; color:var(--oak); opacity:0.5;"></ion-icon>
+                </div>
                 <div class="space-details">
                     <span class="space-type-badge">${typeLabel}</span>
                     <h3>${space.name}</h3>
                     <div class="space-capacity">
-                        <ion-icon name="people-outline"></ion-icon> 
+                        <ion-icon name="people-outline"></ion-icon>
                         <span>Up to ${space.capacity} person(s)</span>
                     </div>
                     <div class="space-price-row">
@@ -128,13 +146,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Expose Add to Cart to global window object so inline onclick works
+    // ============================================================
+    // CART LOGIC
+    // ============================================================
     window.addToCart = function(spaceId) {
-        const space = spacesData.find(s => s.id === spaceId);
+        const space = spacesData.find(s => String(s.id) === String(spaceId));
         if (!space) return;
 
-        // Check if already in cart
-        if (cart.find(item => item.space.id === spaceId)) {
+        if (cart.find(item => String(item.space.id) === String(spaceId))) {
             alert('This space is already in your booking list.');
             return;
         }
@@ -147,7 +166,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const cartItemsContainer = document.getElementById('cart-items');
         const cartSummary = document.getElementById('cart-summary');
         const totalPriceEl = document.getElementById('cart-total-price');
-        
+
+        if (!cartItemsContainer || !cartSummary || !totalPriceEl) return;
+
         cartItemsContainer.innerHTML = '';
 
         if (cart.length === 0) {
@@ -159,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let total = 0;
 
         cart.forEach((item, index) => {
-            const price = item.space.price_per_unit || (item.space.space_type === 'dedicated_desk' ? 6500 : 400);
+            const price = Number(item.space.price_per_unit) || 0;
             total += price;
 
             const cartItem = document.createElement('div');
@@ -185,27 +206,29 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCart();
     };
 
-    let pendingCheckoutInserts = [];
-    let pendingCheckoutTotal = 0;
+    // ============================================================
+    // CHECKOUT → PAYMENT MODAL
+    // ============================================================
+    let pendingBookingInserts = [];
+    let pendingTotal = 0;
 
     window.processCheckout = async function() {
         if (!currentUser) {
-            alert("Please login first.");
+            showAuthModal(false);
             return;
         }
-
         if (cart.length === 0) return;
 
-        // Calculate total and prepare inserts
+        // Prepare booking rows & calculate total
         let total = 0;
-        pendingCheckoutInserts = cart.map(item => {
-            const price = item.space.price_per_unit || (item.space.space_type === 'dedicated_desk' ? 6500 : 400);
+        pendingBookingInserts = cart.map(item => {
+            const price = Number(item.space.price_per_unit) || 0;
             total += price;
 
             let pType = 'day_pass';
             let end = new Date();
-            
-            if (item.space.space_type === 'dedicated_desk' || item.space.space_type === 'private_office') {
+
+            if (['dedicated_desk', 'private_office'].includes(item.space.space_type)) {
                 pType = 'monthly';
                 end.setMonth(end.getMonth() + 1);
             } else if (item.space.space_type === 'meeting_room') {
@@ -215,83 +238,103 @@ document.addEventListener('DOMContentLoaded', () => {
                 end.setHours(20, 0, 0, 0);
             }
 
+            const isMock = String(item.space.id).startsWith('mock');
+
             return {
                 user_id: currentUser.id,
-                space_id: item.space.id.startsWith('mock') ? '00000000-0000-0000-0000-000000000000' : item.space.id,
+                space_id: isMock ? null : item.space.id,
                 package_type: pType,
                 start_time: new Date().toISOString(),
                 end_time: end.toISOString(),
-                status: 'pending'
+                status: 'pending',
+                _isMock: isMock,        // internal flag, stripped before insert
+                _price: price           // internal flag
             };
         });
 
-        pendingCheckoutTotal = total;
+        pendingTotal = total;
 
         // Show Payment Modal
-        document.getElementById('payment-amount').textContent = `฿${total.toLocaleString()}`;
-        document.getElementById('payment-modal').classList.add('active');
+        const amountEl = document.getElementById('payment-amount');
+        const payModal = document.getElementById('payment-modal');
+        if (amountEl) amountEl.textContent = `฿${total.toLocaleString()}`;
+        if (payModal) payModal.classList.add('active');
     };
 
     window.cancelPayment = function() {
-        document.getElementById('payment-modal').classList.remove('active');
-        pendingCheckoutInserts = [];
+        const payModal = document.getElementById('payment-modal');
+        if (payModal) payModal.classList.remove('active');
+        pendingBookingInserts = [];
     };
 
+    // ============================================================
+    // CONFIRM PAYMENT → Insert bookings + payments into Supabase
+    // ============================================================
     window.submitPayment = async function() {
         const btn = document.getElementById('btn-confirm-payment');
-        const method = document.getElementById('payment-method').value;
-        
+        const methodEl = document.getElementById('payment-method');
+        if (!btn || !methodEl) return;
+
+        const method = methodEl.value;
         btn.innerHTML = 'Processing...';
         btn.disabled = true;
 
         try {
-            const hasMock = pendingCheckoutInserts.some(i => i.space_id === '00000000-0000-0000-0000-000000000000');
-            
+            const hasMock = pendingBookingInserts.some(i => i._isMock);
+
             if (!hasMock) {
-                // 1. Insert Bookings (pending)
+                // Strip internal flags before sending to Supabase
+                const cleanInserts = pendingBookingInserts.map(({ _isMock, _price, ...rest }) => rest);
+
+                // Step 1: Insert Bookings (status = pending)
                 const { data: bookingsData, error: bookingError } = await supabase
                     .from('bookings')
-                    .insert(pendingCheckoutInserts)
+                    .insert(cleanInserts)
                     .select();
-                
-                if (bookingError) throw bookingError;
 
-                // 2. Insert Payments
-                const paymentInserts = bookingsData.map(b => ({
+                if (bookingError) throw bookingError;
+                if (!bookingsData || bookingsData.length === 0) throw new Error('No booking data returned.');
+
+                // Step 2: Insert Payments (one per booking)
+                const paymentInserts = bookingsData.map((b, idx) => ({
                     booking_id: b.id,
-                    amount: pendingCheckoutTotal / bookingsData.length, // Distribute total if multiple
+                    amount: pendingBookingInserts[idx]._price,
                     payment_method: method,
                     payment_status: 'completed',
-                    transaction_ref: 'mock_' + Math.random().toString(36).substring(7)
+                    transaction_ref: 'mock_txn_' + Date.now() + '_' + Math.random().toString(36).substring(2, 8)
                 }));
 
-                const { error: paymentError } = await supabase.from('payments').insert(paymentInserts);
+                const { error: paymentError } = await supabase
+                    .from('payments')
+                    .insert(paymentInserts);
                 if (paymentError) throw paymentError;
 
-                // 3. Update Bookings to active
+                // Step 3: Update Bookings to active
                 const bookingIds = bookingsData.map(b => b.id);
                 const { error: updateError } = await supabase
                     .from('bookings')
                     .update({ status: 'active' })
                     .in('id', bookingIds);
-                
+
                 if (updateError) throw updateError;
-                
+
             } else {
-                // Simulate network delay for mock checkout
+                // Mock checkout simulation
                 await new Promise(r => setTimeout(r, 1500));
             }
 
-            alert("Payment successful! Your booking is confirmed.");
-            document.getElementById('payment-modal').classList.remove('active');
+            alert('Payment successful! Your booking is confirmed.');
+            const payModal = document.getElementById('payment-modal');
+            if (payModal) payModal.classList.remove('active');
             cart = [];
             renderCart();
-            
+
             // Redirect to dashboard
             window.location.href = 'dashboard.html';
 
         } catch (err) {
-            alert('Payment failed. Error: ' + err.message);
+            console.error('Payment error:', err);
+            alert('Payment failed: ' + err.message);
         } finally {
             btn.innerHTML = 'Confirm Payment';
             btn.disabled = false;

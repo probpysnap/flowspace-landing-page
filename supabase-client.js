@@ -116,15 +116,22 @@ supabase.auth.onAuthStateChange(async (event, session) => {
     
     if (session) {
         currentUser = session.user;
-        // Fetch profile
-        const { data: profile } = await supabase
-            .from('profiles')
-            .select('full_name')
-            .eq('id', currentUser.id)
-            .single();
-        
-        currentProfile = profile;
-        const displayName = profile?.full_name || currentUser.email.split('@')[0];
+        // Fetch profile (gracefully handle if table doesn't exist yet)
+        let displayName = currentUser.email.split('@')[0];
+        try {
+            const { data: profile, error } = await supabase
+                .from('profiles')
+                .select('full_name')
+                .eq('id', currentUser.id)
+                .single();
+            
+            if (!error && profile) {
+                currentProfile = profile;
+                displayName = profile.full_name || displayName;
+            }
+        } catch (profileErr) {
+            console.warn('Could not fetch profile:', profileErr.message);
+        }
         
         if (authActionBtn) {
             authActionBtn.innerHTML = `
