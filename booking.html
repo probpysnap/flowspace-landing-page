@@ -45,8 +45,8 @@
         <div class="booking-layout">
             <!-- Left Side: Spaces & Filters -->
             <div class="booking-content">
-                <div class="filter-bar">
-                    <div class="filter-group">
+                <div class="filter-bar" style="display: flex; gap: 15px; align-items: flex-end;">
+                    <div class="filter-group" style="flex: 1;">
                         <label data-i18n="filter_type">Space Type</label>
                         <select id="type-filter">
                             <option value="all" data-i18n="filter_all">All Spaces</option>
@@ -56,9 +56,14 @@
                             <option value="meeting_room">Meeting Room</option>
                         </select>
                     </div>
-                    <div class="filter-group">
+                    <div class="filter-group" style="flex: 1;">
                         <label data-i18n="filter_date">Date</label>
                         <input type="date" id="date-filter">
+                    </div>
+                    <div class="filter-group" style="flex: 0 0 auto;">
+                        <button class="btn btn-primary" onclick="document.getElementById('type-filter').dispatchEvent(new Event('change'))" style="height: 48px; padding: 0 30px; display: flex; align-items: center; gap: 8px;">
+                            <ion-icon name="search-outline"></ion-icon> <span data-i18n="filter_btn_search">Search</span>
+                        </button>
                     </div>
                 </div>
 

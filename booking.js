@@ -11,7 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let cart = [];
     let isAuthChecked = false;
 
-    // Listen to Auth State
+    // Load spaces immediately (they are public)
+    loadSpaces();
+
+    // Listen to Auth State for handling the modal
     supabase.auth.onAuthStateChange((event, session) => {
         isAuthChecked = true;
         if (!session) {
@@ -28,19 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (authForm) authForm.addEventListener('submit', handleAuthSubmit);
             }
         } else {
-            // Logged in -> Hide auth modal & load spaces
+            // Logged in -> Hide auth modal
             const modal = document.getElementById('auth-modal');
             if (modal) modal.classList.remove('active');
-            loadSpaces();
         }
     });
-
-    // Fallback: if auth check takes too long, load spaces anyway for browsing
-    setTimeout(() => {
-        if (!isAuthChecked) {
-            loadSpaces();
-        }
-    }, 2000);
 
     // Filter Listeners
     const typeFilter = document.getElementById('type-filter');
