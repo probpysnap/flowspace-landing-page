@@ -37,6 +37,7 @@
                         <img src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/th.svg" alt="Thai">
                     </button>
                 </div>
+                <div id="nav-auth-btn" style="margin-right: 15px;"><button class="btn btn-outline" onclick="showAuthModal(false)" data-i18n="nav_login">Login</button></div>
                 <a href="#pricing" class="btn btn-primary" data-i18n="nav_book">Book a Free Trial</a>
             </div>
         </div>
@@ -266,7 +267,7 @@
                         <li class="disabled"><ion-icon name="close"></ion-icon> <span data-i18n="price_day_feat5">Meeting Room credits</span></li>
                         <li class="disabled"><ion-icon name="close"></ion-icon> <span data-i18n="price_day_feat6">24/7 Access</span></li>
                     </ul>
-                    <a href="#" class="btn btn-outline btn-block" data-i18n="price_day_btn">Get a Day Pass</a>
+                    <a href="#" class="btn btn-outline btn-block" onclick="createBooking('spc-1', 'day_pass')" data-i18n="price_day_btn">Get a Day Pass</a>
                 </div>
 
                 <!-- Dedicated Desk (Popular) -->
@@ -287,7 +288,7 @@
                         <li><ion-icon name="checkmark"></ion-icon> <span data-i18n="price_ded_feat5">5 hrs Meeting Room credits</span></li>
                         <li><ion-icon name="checkmark"></ion-icon> <span data-i18n="price_ded_feat6">Mail & package handling</span></li>
                     </ul>
-                    <a href="#" class="btn btn-primary btn-block" data-i18n="price_ded_btn">Claim Your Desk</a>
+                    <a href="#" class="btn btn-primary btn-block" onclick="createBooking('spc-2', 'monthly')" data-i18n="price_ded_btn">Claim Your Desk</a>
                 </div>
 
                 <!-- Private Office -->

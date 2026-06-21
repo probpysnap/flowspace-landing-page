@@ -130,7 +130,21 @@ const translations = {
         faq_3_q: "Do you offer external monitor rentals?",
         faq_3_a: "Absolutely. 27-inch 4K monitors are available for rent on a daily or monthly basis for Hot Desk users. Dedicated Desks come with one included.",
         faq_4_q: "Can I bring guests?",
-        faq_4_a: "Members with Dedicated Desks or Private Offices get 5 hours of guest pass credits per month. Day pass users cannot bring free guests."
+        faq_4_a: "Members with Dedicated Desks or Private Offices get 5 hours of guest pass credits per month. Day pass users cannot bring free guests.",
+        
+        nav_login: "Login",
+        nav_logout: "Logout",
+        auth_title_login: "Welcome Back",
+        auth_title_register: "Join FlowSpace",
+        auth_fullname: "Full Name",
+        auth_email: "Email Address",
+        auth_pwd: "Password",
+        auth_btn_login: "Sign In",
+        auth_btn_register: "Create Account",
+        auth_switch_login_text: "Already have an account?",
+        auth_switch_login_link: "Login here",
+        auth_switch_register_text: "Don't have an account?",
+        auth_switch_register_link: "Register now"
     },
     th: {
         nav_eco: "ระบบนิเวศการทำงาน",
@@ -263,7 +277,21 @@ const translations = {
         faq_3_q: "มีหน้าจอให้เช่าไหม?",
         faq_3_a: "มีครับ เรามีจอ 4K 27 นิ้ว ให้เช่ารายวันและรายเดือนสำหรับสมาชิก Hot Desk ส่วนสมาชิก Dedicated Desk จะรวมจอไว้ให้แล้ว 1 เครื่อง",
         faq_4_q: "พาเพื่อนเข้ามาด้วยได้ไหม?",
-        faq_4_a: "สมาชิก Dedicated Desk และออฟฟิศส่วนตัว จะได้เครดิตบัตรผู้มาเยือน 5 ชั่วโมงต่อเดือน แต่สำหรับบัตรรายวันจะไม่สามารถพาผู้ติดตามเข้าฟรีได้ครับ"
+        faq_4_a: "สมาชิก Dedicated Desk และออฟฟิศส่วนตัว จะได้เครดิตบัตรผู้มาเยือน 5 ชั่วโมงต่อเดือน แต่สำหรับบัตรรายวันจะไม่สามารถพาผู้ติดตามเข้าฟรีได้ครับ",
+        
+        nav_login: "เข้าสู่ระบบ",
+        nav_logout: "ออกจากระบบ",
+        auth_title_login: "ยินดีต้อนรับกลับมา",
+        auth_title_register: "สมัครสมาชิกใหม่",
+        auth_fullname: "ชื่อ-นามสกุล",
+        auth_email: "อีเมล",
+        auth_pwd: "รหัสผ่าน",
+        auth_btn_login: "เข้าสู่ระบบ",
+        auth_btn_register: "สมัครสมาชิก",
+        auth_switch_login_text: "มีบัญชีอยู่แล้ว?",
+        auth_switch_login_link: "เข้าสู่ระบบที่นี่",
+        auth_switch_register_text: "ยังไม่มีบัญชี?",
+        auth_switch_register_link: "สมัครสมาชิกเลย"
     },
     zh: {
         nav_eco: "办公生态",
@@ -396,7 +424,21 @@ const translations = {
         faq_3_q: "你们提供外接显示器租赁吗？",
         faq_3_a: "当然提供。共享办公桌用户可按日或按月租赁 27 英寸 4K 显示器。专属办公桌已免费包含一台显示器。",
         faq_4_q: "我可以带访客吗？",
-        faq_4_a: "拥有专属办公桌或私人办公室的会员，每月可获得 5 小时的访客通行证积分。日卡用户不能免费带访客。"
+        faq_4_a: "拥有专属办公桌或私人办公室的会员，每月可获得 5 小时的访客通行证积分。日卡用户不能免费带访客。",
+        
+        nav_login: "登录",
+        nav_logout: "登出",
+        auth_title_login: "欢迎回来",
+        auth_title_register: "注册新账号",
+        auth_fullname: "姓名",
+        auth_email: "电子邮箱",
+        auth_pwd: "密码",
+        auth_btn_login: "登录",
+        auth_btn_register: "创建账号",
+        auth_switch_login_text: "已经有账号了吗？",
+        auth_switch_login_link: "在此登录",
+        auth_switch_register_text: "还没有账号？",
+        auth_switch_register_link: "立即注册"
     }
 };
 
