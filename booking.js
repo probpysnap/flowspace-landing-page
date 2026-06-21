@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div class="space-price-row" style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
                         <div class="space-price" style="font-weight: 700; font-size: 1.1rem; color: var(--charcoal);">฿${price.toLocaleString()}<span style="font-size: 0.85rem; font-weight: 400; color: var(--slate);">${period}</span></div>
-                        <button class="btn btn-primary btn-add" onclick="window.addToCart('${space.id}')" style="padding: 8px 20px; font-size: 0.9rem;">Add</button>
+                        <button class="btn btn-primary btn-add" onclick="window.addToCart('${space.id}', this)" style="padding: 8px 20px; font-size: 0.9rem; transition: all 0.3s ease;">Add</button>
                     </div>
                 </div>
             `;
@@ -150,18 +150,42 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================================
     // CART LOGIC
     // ============================================================
-    window.addToCart = function(spaceId) {
+    window.addToCart = function(spaceId, btnElement) {
         const space = spacesData.find(s => String(s.id) === String(spaceId));
-        if (!space) return;
+        if (!space) {
+            console.error('Space not found for id:', spaceId);
+            return;
+        }
 
         if (cart.find(item => String(item.space.id) === String(spaceId))) {
-            alert('This space is already in your booking list.');
+            if (btnElement) {
+                const originalText = btnElement.innerText;
+                btnElement.innerText = 'In Cart';
+                btnElement.style.backgroundColor = 'var(--slate)';
+                setTimeout(() => {
+                    btnElement.innerText = originalText;
+                    btnElement.style.backgroundColor = '';
+                }, 2000);
+            }
             return;
         }
 
         cart.push({ space: space, quantity: 1 });
+        
+        // Visual feedback on button
+        if (btnElement) {
+            const originalText = btnElement.innerText;
+            btnElement.innerText = 'Added ✅';
+            btnElement.style.backgroundColor = '#28a745';
+            btnElement.style.borderColor = '#28a745';
+            setTimeout(() => {
+                btnElement.innerText = originalText;
+                btnElement.style.backgroundColor = '';
+                btnElement.style.borderColor = '';
+            }, 2000);
+        }
+
         renderCart();
-        alert(`"${space.name}" has been added to your booking list! Check the "Your Booking" section.`);
     };
 
     function renderCart() {
