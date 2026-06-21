@@ -81,11 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getMockSpaces() {
         return [
-            { id: 'mock-1', name: 'Hot Desk Zone A', space_type: 'hot_desk', capacity: 1, price_per_unit: 400 },
-            { id: 'mock-2', name: 'Meeting Room 1', space_type: 'meeting_room', capacity: 6, price_per_unit: 1500 },
-            { id: 'mock-3', name: 'Dedicated Desk B', space_type: 'dedicated_desk', capacity: 1, price_per_unit: 6500 },
-            { id: 'mock-4', name: 'Private Office C', space_type: 'private_office', capacity: 4, price_per_unit: 25000 },
-            { id: 'mock-5', name: 'Hot Desk Zone B (Silent)', space_type: 'hot_desk', capacity: 1, price_per_unit: 450 }
+            { id: 'mock-1', name: 'Nimman Hot Desk', space_type: 'hot_desk', capacity: 1, price_per_unit: 400 },
+            { id: 'mock-2', name: 'Ping River Meeting Room', space_type: 'meeting_room', capacity: 6, price_per_unit: 1500 },
+            { id: 'mock-3', name: 'Tha Phae Dedicated Desk', space_type: 'dedicated_desk', capacity: 1, price_per_unit: 6500 },
+            { id: 'mock-4', name: 'Lanna Private Office', space_type: 'private_office', capacity: 4, price_per_unit: 25000 },
+            { id: 'mock-5', name: 'Doi Suthep Silent Zone', space_type: 'hot_desk', capacity: 1, price_per_unit: 450 }
         ];
     }
 
