@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Space - FlowSpace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body class="booking-page-body">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-text">FlowSpace.</span>
+                </a>
+            </div>
+            <div class="nav-actions">
+                <div class="lang-switcher-flags">
+                    <button class="flag-btn active" data-lang="en" title="English">
+                        <img src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/gb.svg" alt="English">
+                    </button>
+                    <button class="flag-btn" data-lang="zh" title="中文">
+                        <img src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/cn.svg" alt="Chinese">
+                    </button>
+                    <button class="flag-btn" data-lang="th" title="ภาษาไทย">
+                        <img src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/th.svg" alt="Thai">
+                    </button>
+                </div>
+                <div id="nav-auth-btn" style="margin-right: 15px;"><button class="btn btn-outline" onclick="showAuthModal(false)" data-i18n="nav_login">Login</button></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Booking Interface -->
+    <main class="booking-main container">
+        <div class="booking-header">
+            <h1 data-i18n="book_title">Reserve Your Space</h1>
+            <p data-i18n="book_subtitle">Select your preferred space and timeframe to guarantee your spot.</p>
+        </div>
+
+        <div class="booking-layout">
+            <!-- Left Side: Spaces & Filters -->
+            <div class="booking-content">
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <label data-i18n="filter_type">Space Type</label>
+                        <select id="type-filter">
+                            <option value="all" data-i18n="filter_all">All Spaces</option>
+                            <option value="hot_desk">Hot Desk</option>
+                            <option value="dedicated_desk">Dedicated Desk</option>
+                            <option value="private_office">Private Office</option>
+                            <option value="meeting_room">Meeting Room</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label data-i18n="filter_date">Date</label>
+                        <input type="date" id="date-filter">
+                    </div>
+                </div>
+
+                <div class="spaces-grid" id="spaces-container">
+                    <!-- Spaces injected via JS -->
+                    <div class="loading-spinner">Loading spaces...</div>
+                </div>
+            </div>
+
+            <!-- Right Side: Cart Sidebar -->
+            <aside class="booking-sidebar">
+                <div class="cart-container">
+                    <h3 data-i18n="cart_title">Your Booking</h3>
+                    <div id="cart-items">
+                        <p class="empty-cart" data-i18n="cart_empty">No space selected yet.</p>
+                    </div>
+                    
+                    <div class="cart-summary" style="display: none;" id="cart-summary">
+                        <div class="summary-row">
+                            <span data-i18n="cart_total">Total</span>
+                            <span class="total-price" id="cart-total-price">฿0</span>
+                        </div>
+                        <button class="btn btn-primary btn-block" id="btn-checkout" onclick="processCheckout()" data-i18n="cart_btn_checkout">Proceed to Checkout</button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal-overlay" id="auth-modal">
+        <div class="auth-modal-container">
+            <h2 id="auth-title" data-i18n="auth_title_login">Welcome Back</h2>
+            <form id="auth-form" data-mode="login">
+                <div class="form-group" id="auth-name-group" style="display: none;">
+                    <label for="fullname" data-i18n="auth_fullname">Full Name</label>
+                    <input type="text" id="fullname" placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="email" data-i18n="auth_email">Email Address</label>
+                    <input type="email" id="email" required placeholder="hello@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="password" data-i18n="auth_pwd">Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" id="auth-submit" data-i18n="auth_btn_login">Sign In</button>
+            </form>
+            <p class="auth-switch" id="auth-switch-text">
+                <span data-i18n="auth_switch_register_text">Don't have an account?</span> <a href="#" onclick="showAuthModal(true)" data-i18n="auth_switch_register_link">Register now</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-client.js"></script>
+    <script src="i18n.js"></script>
+    <script src="booking.js"></script>
+</body>
+</html>

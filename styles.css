@@ -1101,3 +1101,224 @@ ul {
     font-weight: 600;
     color: var(--oak);
 }
+
+/* --- Booking Page --- */
+.booking-page-body {
+    background-color: var(--bg-light);
+}
+
+.booking-main {
+    padding-top: 100px;
+    padding-bottom: 60px;
+}
+
+.booking-header {
+    margin-bottom: 40px;
+}
+
+.booking-header h1 {
+    font-size: 2.5rem;
+    color: var(--charcoal);
+    margin-bottom: 10px;
+}
+
+.booking-header p {
+    color: var(--slate);
+    font-size: 1.1rem;
+}
+
+.booking-layout {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 40px;
+    align-items: start;
+}
+
+.filter-bar {
+    display: flex;
+    gap: 20px;
+    background: var(--bg-white);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 30px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.filter-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--slate);
+}
+
+.filter-group select, .filter-group input {
+    padding: 10px 15px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: var(--bg-light);
+}
+
+.spaces-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.space-card {
+    background: var(--bg-white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.space-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.space-image {
+    height: 180px;
+    background-color: #e2e8f0;
+    background-size: cover;
+    background-position: center;
+}
+
+.space-details {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.space-type-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    background: rgba(181, 131, 80, 0.1);
+    color: var(--oak);
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    align-self: flex-start;
+}
+
+.space-details h3 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+    color: var(--charcoal);
+}
+
+.space-capacity {
+    font-size: 0.85rem;
+    color: var(--slate);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.space-price-row {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.space-price {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--charcoal);
+}
+
+.space-price span {
+    font-size: 0.8rem;
+    color: var(--slate);
+    font-weight: 400;
+}
+
+.booking-sidebar {
+    position: sticky;
+    top: 100px;
+}
+
+.cart-container {
+    background: var(--bg-white);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: var(--shadow-md);
+}
+
+.cart-container h3 {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.empty-cart {
+    color: var(--slate);
+    text-align: center;
+    font-style: italic;
+    padding: 20px 0;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed rgba(0,0,0,0.1);
+}
+
+.cart-item-info h4 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.cart-item-info p {
+    font-size: 0.85rem;
+    color: var(--slate);
+}
+
+.cart-summary {
+    margin-top: 25px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.total-price {
+    color: var(--oak);
+}
+
+@media (max-width: 900px) {
+    .booking-layout {
+        grid-template-columns: 1fr;
+    }
+    .booking-sidebar {
+        position: static;
+        margin-top: 40px;
+    }
+    .filter-bar {
+        flex-direction: column;
+    }
+}

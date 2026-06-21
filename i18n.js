@@ -144,7 +144,17 @@ const translations = {
         auth_switch_login_text: "Already have an account?",
         auth_switch_login_link: "Login here",
         auth_switch_register_text: "Don't have an account?",
-        auth_switch_register_link: "Register now"
+        auth_switch_register_link: "Register now",
+        
+        book_title: "Reserve Your Space",
+        book_subtitle: "Select your preferred space and timeframe to guarantee your spot.",
+        filter_type: "Space Type",
+        filter_all: "All Spaces",
+        filter_date: "Date",
+        cart_title: "Your Booking",
+        cart_empty: "No space selected yet.",
+        cart_total: "Total",
+        cart_btn_checkout: "Proceed to Checkout"
     },
     th: {
         nav_eco: "ระบบนิเวศการทำงาน",
@@ -291,7 +301,17 @@ const translations = {
         auth_switch_login_text: "มีบัญชีอยู่แล้ว?",
         auth_switch_login_link: "เข้าสู่ระบบที่นี่",
         auth_switch_register_text: "ยังไม่มีบัญชี?",
-        auth_switch_register_link: "สมัครสมาชิกเลย"
+        auth_switch_register_link: "สมัครสมาชิกเลย",
+        
+        book_title: "จองพื้นที่ของคุณ",
+        book_subtitle: "เลือกพื้นที่และเวลาที่คุณต้องการเพื่อการันตีที่นั่ง",
+        filter_type: "ประเภทพื้นที่",
+        filter_all: "พื้นที่ทั้งหมด",
+        filter_date: "วันที่",
+        cart_title: "รายการจองของคุณ",
+        cart_empty: "ยังไม่ได้เลือกพื้นที่",
+        cart_total: "ยอดรวม",
+        cart_btn_checkout: "ดำเนินการชำระเงิน"
     },
     zh: {
         nav_eco: "办公生态",
@@ -438,7 +458,17 @@ const translations = {
         auth_switch_login_text: "已经有账号了吗？",
         auth_switch_login_link: "在此登录",
         auth_switch_register_text: "还没有账号？",
-        auth_switch_register_link: "立即注册"
+        auth_switch_register_link: "立即注册",
+        
+        book_title: "预订您的空间",
+        book_subtitle: "选择您偏好的空间和时间以保留位置。",
+        filter_type: "空间类型",
+        filter_all: "所有空间",
+        filter_date: "日期",
+        cart_title: "您的预订",
+        cart_empty: "尚未选择空间",
+        cart_total: "总计",
+        cart_btn_checkout: "结算"
     }
 };
 
