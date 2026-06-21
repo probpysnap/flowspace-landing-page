@@ -114,26 +114,32 @@ document.addEventListener('DOMContentLoaded', () => {
             // Price & period
             const price = Number(space.price_per_unit) || 0;
             let period = '/day';
-            if (['dedicated_desk', 'private_office'].includes(space.space_type)) {
+            let imageUrl = 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80'; // Default
+            
+            if (['dedicated_desk'].includes(space.space_type)) {
                 period = '/mo';
+                imageUrl = 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=600&q=80';
+            } else if (space.space_type === 'private_office') {
+                period = '/mo';
+                imageUrl = 'https://images.unsplash.com/photo-1572025442646-866d16c84a54?auto=format&fit=crop&w=600&q=80';
             } else if (space.space_type === 'meeting_room') {
                 period = '/hr';
+                imageUrl = 'https://images.unsplash.com/photo-1582653291997-079a1c04e5a1?auto=format&fit=crop&w=600&q=80';
             }
 
             card.innerHTML = `
-                <div class="space-image" style="background: linear-gradient(135deg, rgba(181,131,80,0.15), rgba(38,50,56,0.08)); display:flex; align-items:center; justify-content:center; min-height:180px;">
-                    <ion-icon name="business-outline" style="font-size:3rem; color:var(--oak); opacity:0.5;"></ion-icon>
+                <div class="space-image" style="background-image: url('${imageUrl}'); background-size: cover; background-position: center; min-height: 200px; border-radius: 12px 12px 0 0;">
                 </div>
-                <div class="space-details">
+                <div class="space-details" style="padding: 20px;">
                     <span class="space-type-badge">${typeLabel}</span>
-                    <h3>${space.name}</h3>
-                    <div class="space-capacity">
+                    <h3 style="margin: 10px 0; font-size: 1.2rem; color: var(--charcoal);">${space.name}</h3>
+                    <div class="space-capacity" style="color: var(--slate); font-size: 0.9rem; margin-bottom: 15px; display: flex; align-items: center; gap: 5px;">
                         <ion-icon name="people-outline"></ion-icon>
                         <span>Up to ${space.capacity} person(s)</span>
                     </div>
-                    <div class="space-price-row">
-                        <div class="space-price">฿${price.toLocaleString()}<span>${period}</span></div>
-                        <button class="btn btn-primary btn-add" onclick="window.addToCart('${space.id}')">Add</button>
+                    <div class="space-price-row" style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
+                        <div class="space-price" style="font-weight: 700; font-size: 1.1rem; color: var(--charcoal);">฿${price.toLocaleString()}<span style="font-size: 0.85rem; font-weight: 400; color: var(--slate);">${period}</span></div>
+                        <button class="btn btn-primary btn-add" onclick="window.addToCart('${space.id}')" style="padding: 8px 20px; font-size: 0.9rem;">Add</button>
                     </div>
                 </div>
             `;
@@ -155,6 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         cart.push({ space: space, quantity: 1 });
         renderCart();
+        alert(`"${space.name}" has been added to your booking list! Check the "Your Booking" section.`);
     };
 
     function renderCart() {
